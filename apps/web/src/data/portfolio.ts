@@ -69,6 +69,9 @@ export const portfolio = {
     {
       id: 'iran',
       title: 'Iran — early career foundations',
+      subtitle: undefined,
+      start: undefined,
+      end: undefined,
       bullets: [
         'Started building full-stack systems and internal tools in real production environments.',
       ],
@@ -102,7 +105,9 @@ export const portfolio = {
     {
       id: 'germany',
       title: 'Moved to Germany',
+      subtitle: 'Hamburg,Lindau,Munich',
       start: 'Jul 2021',
+      end: undefined,
       bullets: [
         'Relocated to Germany and continued building production systems while improving language skills and local experience.',
       ],
