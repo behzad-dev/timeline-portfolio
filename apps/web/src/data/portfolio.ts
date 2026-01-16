@@ -59,9 +59,9 @@ export const portfolio = {
   },
 
   links: {
-    github: 'https://github.com/behzav',
-    linkedin: 'https://www.linkedin.com/in/behzad-9/',
-    email: 'be@outlook.com',
+    github: 'https://github.com/behzad-dev',
+    linkedin: 'https://www.linkedin.com/in/behzad-n-810659229/',
+    email: 'behzadn91@outlook.com',
     cvUrl: undefined,
   },
 
