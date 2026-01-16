@@ -1,14 +1,15 @@
-import Link from "next/link";
-import { portfolio } from "@/data/portfolio";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import Link from 'next/link';
+import { portfolio } from '@/data/portfolio';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import { PageContainer } from '@/components/PageContainer';
 
 export function Projects() {
   return (
-    <section className="py-14">
-      <div className="mx-auto max-w-5xl px-6">
+    <section id="projects" className="py-14 scroll-mt-20">
+      <PageContainer>
         <h2 className="text-2xl font-semibold tracking-tight">Featured Projects</h2>
         <p className="mt-2 text-sm text-muted-foreground">
           A few projects that show how I build and ship end-to-end.
@@ -38,8 +39,8 @@ export function Projects() {
                     <Button key={l.href} variant="outline" asChild>
                       <Link
                         href={l.href}
-                        target={l.href.startsWith("http") ? "_blank" : undefined}
-                        rel={l.href.startsWith("http") ? "noreferrer" : undefined}
+                        target={l.href.startsWith('http') ? '_blank' : undefined}
+                        rel={l.href.startsWith('http') ? 'noreferrer' : undefined}
                       >
                         {l.label}
                       </Link>
@@ -50,7 +51,7 @@ export function Projects() {
             </Card>
           ))}
         </div>
-      </div>
+      </PageContainer>
     </section>
   );
 }

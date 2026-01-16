@@ -1,12 +1,13 @@
-import { portfolio } from "@/data/portfolio";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
+import { portfolio } from '@/data/portfolio';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
+import { PageContainer } from '@/components/PageContainer';
 
 export function Skills() {
   return (
-    <section className="py-14">
-      <div className="mx-auto max-w-5xl px-6">
+    <section id="skills" className="py-14 scroll-mt-20">
+      <PageContainer>
         <div className="flex items-end justify-between gap-4">
           <div>
             <h2 className="text-2xl font-semibold tracking-tight">Skills / Toolbox</h2>
@@ -34,7 +35,7 @@ export function Skills() {
             </Card>
           ))}
         </div>
-      </div>
+      </PageContainer>
     </section>
   );
 }
