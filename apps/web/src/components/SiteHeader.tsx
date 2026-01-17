@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Menu } from 'lucide-react';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -49,6 +50,7 @@ export function SiteHeader() {
 
           {/* Right (desktop buttons) */}
           <div className="hidden items-center gap-2 md:flex md:justify-self-end">
+            <ThemeToggle />
             <Button size="sm" variant="outline" asChild>
               <Link href={portfolio.links.github ?? '#'} target="_blank" rel="noreferrer">
                 GitHub
@@ -73,7 +75,10 @@ export function SiteHeader() {
                   <SheetTitle>{portfolio.person.name}</SheetTitle>
                   <SheetDescription>Navigate sections</SheetDescription>
                 </SheetHeader>
-
+                <div className="mt-4 flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground">Theme</span>
+                  <ThemeToggle />
+                </div>
                 <Separator className="my-5" />
 
                 <div className="flex flex-col gap-2">
@@ -94,7 +99,11 @@ export function SiteHeader() {
                 <div className="flex flex-col gap-2">
                   {portfolio.links.github ? (
                     <Button variant="outline" asChild>
-                      <Link href={portfolio.links.github} target="_blank" rel="noreferrer">
+                      <Link
+                        href={portfolio.links.github}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
                         GitHub
                       </Link>
                     </Button>
@@ -102,7 +111,11 @@ export function SiteHeader() {
 
                   {portfolio.links.linkedin ? (
                     <Button variant="outline" asChild>
-                      <Link href={portfolio.links.linkedin} target="_blank" rel="noreferrer">
+                      <Link
+                        href={portfolio.links.linkedin}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
                         LinkedIn
                       </Link>
                     </Button>
