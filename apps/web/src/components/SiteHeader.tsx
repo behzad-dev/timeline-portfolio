@@ -14,12 +14,14 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b bg-background/70 backdrop-blur supports-[backdrop-filter]:bg-background/50">
       <PageContainer>
-        <div className="flex h-14 items-center justify-between">
-          <Link href="#top" className="font-semibold tracking-tight">
-            {portfolio.person.name}
-          </Link>
+        <div className="grid h-14 grid-cols-[1fr_auto_1fr] items-center">
+          <div className="justify-self-start">
+            <Link href="#top" className="font-semibold tracking-tight">
+              {portfolio.person.name}
+            </Link>
+          </div>
 
-          <nav className="hidden items-center gap-6 md:flex">
+          <nav className="hidden items-center gap-6 md:flex justify-self-center">
             {nav.map((item) => (
               <Link
                 key={item.href}
@@ -31,7 +33,7 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 justify-self-end">
             <Button size="sm" variant="outline" asChild>
               <Link href={portfolio.links.github ?? '#'} target="_blank" rel="noreferrer">
                 GitHub
@@ -46,3 +48,4 @@ export function SiteHeader() {
     </header>
   );
 }
+

@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { PageContainer } from '@/components/PageContainer';
+import { Section } from '@/components/Section';
 
 function formatRange(start?: string, end?: string) {
   if (start && end) return `${start} — ${end}`;
@@ -139,35 +140,32 @@ export function Timeline() {
   });
 
   return (
-    <section id="journey" className="py-16 scroll-mt-20">
-      <PageContainer>
-        <h2 className="text-2xl font-semibold tracking-tight">Journey</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The story behind my work — from Iran to Germany, and what I’m building now.
-        </p>
+    <Section
+      id="journey"
+      variant="tint"
+      title="Journey"
+      subtitle="The story behind my work — from Iran to Germany, and what I’m building now."
+    >
+      <div ref={containerRef} className="relative">
+        {/* Base rail */}
+        <div className="absolute left-4 top-0 h-full w-[2px] -translate-x-1/2 bg-border/70 md:left-1/2" />
 
-        <Separator className="my-8" />
+        {/* Fill rail */}
+        <motion.div
+          className="absolute left-4 top-0 h-full w-[2px] -translate-x-1/2 origin-top md:left-1/2"
+          style={{
+            scaleY: prefersReducedMotion ? 1 : scrollYProgress,
+            backgroundColor: 'var(--primary)',
+          }}
+        />
 
-        <div ref={containerRef} className="relative">
-          {/* Base rail */}
-          <div className="absolute left-4 top-0 h-full w-[2px] -translate-x-1/2 bg-border/70 md:left-1/2" />
-
-          {/* Fill rail */}
-          <motion.div
-            className="absolute left-4 top-0 h-full w-[2px] -translate-x-1/2 origin-top md:left-1/2"
-            style={{
-              scaleY: prefersReducedMotion ? 1 : scrollYProgress,
-              backgroundColor: 'var(--primary)',
-            }}
-          />
-
-          <div className="space-y-6 md:space-y-7">
-            {portfolio.timeline.map((item, idx) => (
-              <TimelineEntry key={item.id} item={item} index={idx} />
-            ))}
-          </div>
+        <div className="space-y-6 md:space-y-7">
+          {portfolio.timeline.map((item, idx) => (
+            <TimelineEntry key={item.id} item={item} index={idx} />
+          ))}
         </div>
-      </PageContainer>
-    </section>
+      </div>
+    </Section>
   );
+
 }
