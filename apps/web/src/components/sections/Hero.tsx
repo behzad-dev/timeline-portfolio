@@ -9,9 +9,15 @@ export function Hero() {
   const { person, links } = portfolio;
 
   const ctas = [
-    links.github ? { label: 'GitHub', href: links.github, variant: 'outline' as const } : null,
-    links.linkedin ? { label: 'LinkedIn', href: links.linkedin, variant: 'outline' as const } : null,
-    links.email ? { label: 'Contact', href: `mailto:${links.email}`, variant: 'default' as const } : null,
+    links.github
+      ? { label: 'GitHub', href: links.github, variant: 'outline' as const }
+      : null,
+    links.linkedin
+      ? { label: 'LinkedIn', href: links.linkedin, variant: 'outline' as const }
+      : null,
+    links.email
+      ? { label: 'Contact', href: `mailto:${links.email}`, variant: 'default' as const }
+      : null,
   ].filter(Boolean);
 
   return (
@@ -56,13 +62,16 @@ export function Hero() {
           <Separator className="my-4" />
           <ul className="space-y-3 text-sm text-muted-foreground">
             <li>
-              <span className="text-foreground">Stack:</span> React / Next.js / Node.js / AWS
+              <span className="text-foreground">Stack:</span> React / Next.js / Node.js /
+              AWS
             </li>
             <li>
-              <span className="text-foreground">Focus:</span> production-ready apps, CI/CD, observability
+              <span className="text-foreground">Focus:</span> production-ready apps,
+              CI/CD, observability
             </li>
             <li>
-              <span className="text-foreground">Based in:</span> {person.location ?? 'Germany'}
+              <span className="text-foreground">Based in:</span>{' '}
+              {person.location ?? 'Germany'}
             </li>
             <li>
               <span className="text-foreground">German:</span> A2.2 → B1 (in progress)
