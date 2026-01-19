@@ -38,3 +38,18 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# Next.js
+apps/web/.next/
+apps/web/out/
+
+# deps
+**/node_modules/
+
+# CDK
+infra/cdk.out/
+infra/.cdk.staging/
+
+# misc
+.DS_Store
+*.log
