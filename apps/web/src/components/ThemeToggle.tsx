@@ -1,41 +1,41 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { Moon, Sun } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 
-function getInitialTheme(): 'light' | 'dark' {
-  if (typeof window === 'undefined') return 'light';
-  const saved = window.localStorage.getItem('theme');
-  if (saved === 'light' || saved === 'dark') return saved;
-  const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
-  return prefersDark ? 'dark' : 'light';
+type Theme = "light" | "dark";
+
+function getInitialTheme(): Theme {
+  if (typeof window === "undefined") return "light";
+
+  const saved = window.localStorage.getItem("theme");
+  if (saved === "light" || saved === "dark") return saved;
+
+  return window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+function applyTheme(t: Theme) {
+  document.documentElement.classList.toggle("dark", t === "dark");
+  window.localStorage.setItem("theme", t);
 }
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-  const [mounted, setMounted] = useState(false);
+  // Initialize on first client render (no effect state updates)
+  const [theme, setTheme] = useState<Theme>(() => getInitialTheme());
 
+  // Effect only touches external systems (DOM + localStorage). No setState here.
   useEffect(() => {
-    const t = getInitialTheme();
-    setTheme(t);
-    setMounted(true);
-    document.documentElement.classList.toggle('dark', t === 'dark');
-  }, []);
-
-  function toggle() {
-    const next = theme === 'dark' ? 'light' : 'dark';
-    setTheme(next);
-    window.localStorage.setItem('theme', next);
-    document.documentElement.classList.toggle('dark', next === 'dark');
-  }
-
-  // Avoid hydration mismatch icon flicker
-  if (!mounted) return null;
+    applyTheme(theme);
+  }, [theme]);
 
   return (
-    <Button variant="ghost" size="icon" onClick={toggle} aria-label="Toggle theme">
-      {theme === 'dark' ? <Sun /> : <Moon />}
+    <Button
+      variant="outline"
+      size="sm"
+      onClick={() => setTheme((t) => (t === "dark" ? "light" : "dark"))}
+      aria-label="Toggle theme"
+    >
+      Theme
     </Button>
   );
 }

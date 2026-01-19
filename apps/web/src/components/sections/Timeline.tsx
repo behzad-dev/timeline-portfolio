@@ -6,8 +6,6 @@ import { motion, useInView, useReducedMotion, useScroll } from 'framer-motion';
 import { portfolio, type TimelineItem as TimelineItemType } from '@/data/portfolio';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { PageContainer } from '@/components/PageContainer';
 import { Section } from '@/components/Section';
 
 function formatRange(start?: string, end?: string) {
