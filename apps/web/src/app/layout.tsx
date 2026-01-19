@@ -1,7 +1,7 @@
 import './globals.css';
 import { SiteHeader } from '@/components/SiteHeader';
-import type { Metadata } from "next";
-import { site } from "@/config/site";
+import type { Metadata } from 'next';
+import { site } from '@/config/site';
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -12,20 +12,20 @@ export const metadata: Metadata = {
   description: site.description,
   applicationName: site.shortName,
   keywords: [
-    "Full-stack developer",
-    "Next.js",
-    "React",
-    "Node.js",
-    "AWS",
-    "TypeScript",
-    "CI/CD",
-    "CloudFront",
-    "CDK",
+    'Full-stack developer',
+    'Next.js',
+    'React',
+    'Node.js',
+    'AWS',
+    'TypeScript',
+    'CI/CD',
+    'CloudFront',
+    'CDK',
   ],
-  authors: [{ name: "Behzad" }],
-  creator: "Behzad",
+  authors: [{ name: 'Behzad' }],
+  creator: 'Behzad',
   openGraph: {
-    type: "website",
+    type: 'website',
     url: site.url,
     title: site.name,
     description: site.description,
@@ -34,20 +34,16 @@ export const metadata: Metadata = {
     images: [{ url: site.ogImage, width: 1200, height: 630, alt: site.name }],
   },
   twitter: {
-    card: "summary_large_image",
+    card: 'summary_large_image',
     title: site.name,
     description: site.description,
     images: [site.ogImage],
   },
   icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/icon.png", type: "image/png" },
-    ],
-    apple: [{ url: "/apple-icon.png" }],
+    icon: [{ url: '/favicon.ico' }, { url: '/icon.png', type: 'image/png' }],
+    apple: [{ url: '/apple-icon.png' }],
   },
 };
-
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
