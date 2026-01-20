@@ -22,17 +22,17 @@ export function Projects() {
           {portfolio.projects.map((p) => (
             <Card key={p.id} className="shadow-sm overflow-hidden">
   {p.image ? (
-    <div className="border-b bg-muted/20">
-<Image
-  src={p.image}
-  alt={p.title}
-  width={1200}
-  height={630}
-  className="h-44 w-full object-cover"
-  priority={false}
-/>
-    </div>
-  ) : null}
+  <div className="relative mb-4 aspect-[16/9] w-full overflow-hidden rounded-lg border bg-muted">
+    <Image
+      src={p.image.src}
+      alt={p.image.alt}
+      fill
+      sizes="(min-width: 768px) 50vw, 100vw"
+      className="object-cover object-center"
+      priority={p.id === 'timeline-portfolio'}
+    />
+  </div>
+) : null}
 
   <CardHeader className="pb-3">
     <CardTitle className="text-lg">{p.title}</CardTitle>

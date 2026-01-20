@@ -27,9 +27,11 @@ export type Project = {
   id: string;
   title: string;
   description: string;
+  highlights: string[];
+  role?: string;
   tech: string[];
   links: SocialLink[];
-  image?: string;
+  image?: { src: string; alt: string };
 };
 
 export type Portfolio = {
@@ -204,6 +206,12 @@ export const portfolio = {
       title: 'Premium Timeline Portfolio',
       description:
         'A premium-feeling portfolio with a scroll-drawn journey timeline, strong UI polish, and production AWS hosting + CI/CD.',
+      role: 'Solo project',
+      highlights: [
+        'Built a scroll-driven timeline with Framer Motion and reduced-motion support.',
+        'Deployed static export to S3 + CloudFront with custom domain.',
+        'Added GitHub Actions deploy pipeline and SEO/social metadata.',
+      ],
       tech: [
         'Next.js',
         'TypeScript',
@@ -213,10 +221,10 @@ export const portfolio = {
         'AWS',
         'CDK',
       ],
-      image: '/projects/portfolio.png',
+      image: { src: '/projects/portfolio.png', alt: 'Screenshot of timeline portfolio' },
       links: [
         { label: 'Live', href: 'https://behzadonline.com/' },
-        { label: 'GitHub', href: 'https://github.com/behzad-dev/timeline-portfolio' }, // ✅ fix if needed
+        { label: 'GitHub', href: 'https://github.com/behzad-dev/timeline-portfolio' },
       ],
     },
     {
@@ -224,8 +232,14 @@ export const portfolio = {
       title: 'EmojiGuess',
       description:
         'A small web game built for speed and clean UX: responsive layout, simple state, and deploy-ready structure.',
+      role: 'Solo project',
+      highlights: [
+        'Built a clean responsive UI with TypeScript-first components.',
+        'Kept state flow simple and maintainable for fast iteration.',
+        'Deployed as a public demo for sharing and feedback.',
+      ],
       tech: ['React', 'TypeScript'],
-      image: '/projects/emojiguess.png',
+      image: { src: '/projects/emojiguess.png', alt: 'Screenshot of EmojiGuess game' },
       links: [
         { label: 'Live', href: 'https://emojiguess.behzadonline.com/' },
         { label: 'GitHub', href: 'https://github.com/behzad-dev/emoji-game' },
