@@ -27,7 +27,7 @@ export type Project = {
   id: string;
   title: string;
   description: string;
-  highlights: string[];
+  highlights?: string[];
   role?: string;
   tech: string[];
   links: SocialLink[];

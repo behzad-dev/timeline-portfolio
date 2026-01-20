@@ -20,26 +20,36 @@ export function Projects() {
 
         <div className="grid gap-4 md:grid-cols-2">
           {portfolio.projects.map((p) => (
-            <Card key={p.id} className="shadow-sm overflow-hidden">
+  <Card key={p.id} className="overflow-hidden shadow-sm">
   {p.image ? (
-  <div className="relative mb-4 aspect-[16/9] w-full overflow-hidden rounded-lg border bg-muted">
-    <Image
-      src={p.image.src}
-      alt={p.image.alt}
-      fill
-      sizes="(min-width: 768px) 50vw, 100vw"
-      className="object-cover object-center"
-      priority={p.id === 'timeline-portfolio'}
-    />
-  </div>
-) : null}
+    <div className="relative aspect-[16/9] w-full bg-muted">
+      <Image
+        src={p.image.src}
+        alt={p.image.alt}
+        fill
+        sizes="(min-width: 768px) 50vw, 100vw"
+        className="object-contain object-center p-2"
+        priority={p.id === 'timeline-portfolio'}
+      />
+    </div>
+  ) : null}
 
   <CardHeader className="pb-3">
     <CardTitle className="text-lg">{p.title}</CardTitle>
+    {p.role ? <p className="text-xs text-muted-foreground">{p.role}</p> : null}
     <p className="mt-2 text-sm text-muted-foreground">{p.description}</p>
   </CardHeader>
 
   <CardContent className="space-y-4">
+    {p.highlights?.length ? (
+      <ul className="list-disc space-y-1 pl-5 text-sm text-foreground/80">
+        {p.highlights.map((h) => (
+          <li key={h}>{h}</li>
+        ))}
+      </ul>
+    ) : null}
+
+    {/* Tech */}
     <div className="flex flex-wrap gap-2">
       {p.tech.map((t) => (
         <Badge key={t} variant="secondary">
