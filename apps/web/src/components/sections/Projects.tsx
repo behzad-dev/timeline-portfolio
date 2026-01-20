@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { PageContainer } from '@/components/PageContainer';
+import Image from 'next/image';
 
 export function Projects() {
   return (
@@ -19,36 +20,50 @@ export function Projects() {
 
         <div className="grid gap-4 md:grid-cols-2">
           {portfolio.projects.map((p) => (
-            <Card key={p.id} className="shadow-sm">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg">{p.title}</CardTitle>
-                <p className="mt-2 text-sm text-muted-foreground">{p.description}</p>
-              </CardHeader>
+            <Card key={p.id} className="shadow-sm overflow-hidden">
+  {p.image ? (
+    <div className="border-b bg-muted/20">
+<Image
+  src={p.image}
+  alt={p.title}
+  width={1200}
+  height={630}
+  className="h-44 w-full object-cover"
+  priority={false}
+/>
+    </div>
+  ) : null}
 
-              <CardContent className="space-y-4">
-                <div className="flex flex-wrap gap-2">
-                  {p.tech.map((t) => (
-                    <Badge key={t} variant="secondary">
-                      {t}
-                    </Badge>
-                  ))}
-                </div>
+  <CardHeader className="pb-3">
+    <CardTitle className="text-lg">{p.title}</CardTitle>
+    <p className="mt-2 text-sm text-muted-foreground">{p.description}</p>
+  </CardHeader>
 
-                <div className="flex flex-wrap gap-3">
-                  {p.links.map((l) => (
-                    <Button key={l.href} variant="outline" asChild>
-                      <Link
-                        href={l.href}
-                        target={l.href.startsWith('http') ? '_blank' : undefined}
-                        rel={l.href.startsWith('http') ? 'noreferrer' : undefined}
-                      >
-                        {l.label}
-                      </Link>
-                    </Button>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+  <CardContent className="space-y-4">
+    <div className="flex flex-wrap gap-2">
+      {p.tech.map((t) => (
+        <Badge key={t} variant="secondary">
+          {t}
+        </Badge>
+      ))}
+    </div>
+
+    <div className="flex flex-wrap gap-3">
+      {p.links.map((l) => (
+        <Button key={l.href} variant="outline" asChild>
+          <Link
+            href={l.href}
+            target={l.href.startsWith('http') ? '_blank' : undefined}
+            rel={l.href.startsWith('http') ? 'noreferrer' : undefined}
+          >
+            {l.label}
+          </Link>
+        </Button>
+      ))}
+    </div>
+  </CardContent>
+</Card>
+
           ))}
         </div>
       </PageContainer>

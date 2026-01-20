@@ -29,6 +29,7 @@ export type Project = {
   description: string;
   tech: string[];
   links: SocialLink[];
+  image?: string;
 };
 
 export type Portfolio = {
@@ -62,7 +63,6 @@ export const portfolio = {
     github: 'https://github.com/behzad-dev',
     linkedin: 'https://www.linkedin.com/in/test/',
     email: 'test@test.test',
-    cvUrl: undefined,
   },
 
   timeline: [
@@ -203,19 +203,29 @@ export const portfolio = {
       id: 'timeline-portfolio',
       title: 'Premium Timeline Portfolio',
       description:
-        'A premium-feeling portfolio with a scroll-drawn journey timeline and production-grade AWS deployment.',
-      tech: ['Next.js', 'TypeScript', 'Tailwind', 'shadcn/ui', 'AWS', 'CDK'],
+        'A premium-feeling portfolio with a scroll-drawn journey timeline, strong UI polish, and production AWS hosting + CI/CD.',
+      tech: [
+        'Next.js',
+        'TypeScript',
+        'Tailwind',
+        'shadcn/ui',
+        'Framer Motion',
+        'AWS',
+        'CDK',
+      ],
+      image: '/projects/portfolio.png',
       links: [
-        { label: 'GitHub', href: 'https://github.com/behzav/timeline-portfolio' },
         { label: 'Live', href: 'https://behzadonline.com/' },
+        { label: 'GitHub', href: 'https://github.com/behzad-dev/timeline-portfolio' }, // ✅ fix if needed
       ],
     },
     {
       id: 'emoji-game',
-      title: 'EmojiGame',
+      title: 'EmojiGuess',
       description:
-        'A small web game built to practice modern frontend patterns: responsive UI, clean state management, and deploy-ready structure.',
-      tech: ['React', 'TypeScript', 'Node.js'],
+        'A small web game built for speed and clean UX: responsive layout, simple state, and deploy-ready structure.',
+      tech: ['React', 'TypeScript'],
+      image: '/projects/emojiguess.png',
       links: [
         { label: 'Live', href: 'https://emojiguess.behzadonline.com/' },
         { label: 'GitHub', href: 'https://github.com/behzad-dev/emoji-game' },
