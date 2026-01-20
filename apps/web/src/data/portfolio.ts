@@ -29,6 +29,8 @@ export type Project = {
   description: string;
   highlights?: string[];
   role?: string;
+  details?: string;
+  improvements?: string[];
   tech: string[];
   links: SocialLink[];
   image?: { src: string; alt: string };
@@ -63,22 +65,19 @@ export const portfolio = {
 
   links: {
     github: 'https://github.com/behzad-dev',
-    linkedin: 'https://www.linkedin.com/in/test/',
-    email: 'test@test.test',
+    linkedin: undefined,
+    email: undefined,
+    cvUrl: undefined,
   },
 
   timeline: [
     {
       id: 'iran',
       title: 'Iran — early career foundations',
-      subtitle: undefined,
-      start: undefined,
-      end: undefined,
       bullets: [
         'Started building full-stack systems and internal tools in real production environments.',
       ],
     },
-
     {
       id: 'education',
       title: 'B.Sc. Software Engineering',
@@ -90,7 +89,6 @@ export const portfolio = {
         'Worked on practical projects alongside core computer science coursework.',
       ],
     },
-
     {
       id: 'melat-bank',
       title: 'Software Developer — Melat Bank',
@@ -103,18 +101,15 @@ export const portfolio = {
         'Completed IBM ODM + IIB training and applied decision-automation concepts to integration work.',
       ],
     },
-
     {
       id: 'germany',
       title: 'Moved to Germany',
-      subtitle: 'Hamburg,Lindau,Munich',
+      subtitle: 'Hamburg / Lindau / Munich',
       start: 'Jul 2021',
-      end: undefined,
       bullets: [
         'Relocated to Germany and continued building production systems while improving language skills and local experience.',
       ],
     },
-
     {
       id: '21x',
       title: 'Software Developer — 21X AG (21.Finance)',
@@ -127,7 +122,6 @@ export const portfolio = {
         'Prototyped a React Native (Expo) mobile app and documented architecture for handover.',
       ],
     },
-
     {
       id: 'sviper',
       title: 'Software Developer — Sviper GmbH (The Sandbox)',
@@ -141,7 +135,6 @@ export const portfolio = {
         'Containerized services and shipped via CI/CD; added observability (logs/metrics) to speed up debugging (Datadog).',
       ],
     },
-
     {
       id: 'now',
       title: 'Now',
@@ -149,7 +142,7 @@ export const portfolio = {
       start: 'Nov 2024',
       end: 'Present',
       bullets: [
-        'Building a premium timeline portfolio and sharpening end-to-end production workflow (Next.js, AWS, CI/CD, monitoring).',
+        'Building a timeline portfolio and sharpening end-to-end production workflow (Next.js, AWS, CI/CD, monitoring).',
         'Continuing German learning (completed A2.2; working toward B1).',
       ],
     },
@@ -196,21 +189,27 @@ export const portfolio = {
     },
     {
       name: 'Languages',
-      items: ['Persian (native)', 'English (C1)', 'German (in progress: A2.2 → B1)'],
+      items: ['Persian (native)', 'English (C1)', 'German (B1 → B2)'],
     },
   ],
 
   projects: [
     {
       id: 'timeline-portfolio',
-      title: 'Premium Timeline Portfolio',
+      title: 'Timeline Portfolio',
       description:
         'A premium-feeling portfolio with a scroll-drawn journey timeline, strong UI polish, and production AWS hosting + CI/CD.',
       role: 'Solo project',
       highlights: [
-        'Built a scroll-driven timeline with Framer Motion and reduced-motion support.',
-        'Deployed static export to S3 + CloudFront with custom domain.',
-        'Added GitHub Actions deploy pipeline and SEO/social metadata.',
+        'Scroll-driven timeline with reduced-motion support.',
+        'Static export hosted on S3 + CloudFront + custom domain.',
+        'GitHub Actions deploy pipeline + SEO/social metadata.',
+      ],
+      details:
+        'Built this as a “production-minded” static portfolio: fast CDN delivery, real IaC, and a clean component system. Focus was polish, performance, and a credible end-to-end workflow.',
+      improvements: [
+        'Add a contact form using SES (avoid email spam).',
+        'Add lightweight analytics (privacy-friendly).',
       ],
       tech: [
         'Next.js',
@@ -234,10 +233,13 @@ export const portfolio = {
         'A small web game built for speed and clean UX: responsive layout, simple state, and deploy-ready structure.',
       role: 'Solo project',
       highlights: [
-        'Built a clean responsive UI with TypeScript-first components.',
-        'Kept state flow simple and maintainable for fast iteration.',
+        'Clean responsive UI with TypeScript-first components.',
+        'Simple, maintainable state flow for fast iteration.',
         'Deployed as a public demo for sharing and feedback.',
       ],
+      details:
+        'Built as a frontend exercise: tight UI, quick feedback loop, and a clear “demo-able” experience. Kept the architecture simple and readable.',
+      improvements: ['Add tests for core game logic.'],
       tech: ['React', 'TypeScript'],
       image: { src: '/projects/emojiguess.png', alt: 'Screenshot of EmojiGuess game' },
       links: [

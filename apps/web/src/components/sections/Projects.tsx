@@ -1,11 +1,23 @@
+'use client';
+
 import Link from 'next/link';
+import Image from 'next/image';
 import { portfolio } from '@/data/portfolio';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { PageContainer } from '@/components/PageContainer';
-import Image from 'next/image';
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from '@/components/ui/drawer';
 
 export function Projects() {
   return (
@@ -36,9 +48,7 @@ export function Projects() {
 
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg">{p.title}</CardTitle>
-                {p.role ? (
-                  <p className="text-xs text-muted-foreground">{p.role}</p>
-                ) : null}
+                {p.role ? <p className="text-xs text-muted-foreground">{p.role}</p> : null}
                 <p className="mt-2 text-sm text-muted-foreground">{p.description}</p>
               </CardHeader>
 
@@ -51,7 +61,6 @@ export function Projects() {
                   </ul>
                 ) : null}
 
-                {/* Tech */}
                 <div className="flex flex-wrap gap-2">
                   {p.tech.map((t) => (
                     <Badge key={t} variant="secondary">
@@ -60,7 +69,7 @@ export function Projects() {
                   ))}
                 </div>
 
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap items-center gap-3">
                   {p.links.map((l) => (
                     <Button key={l.href} variant="outline" asChild>
                       <Link
@@ -72,6 +81,76 @@ export function Projects() {
                       </Link>
                     </Button>
                   ))}
+
+                  <Drawer>
+                    <DrawerTrigger asChild>
+                      <Button variant="secondary">More</Button>
+                    </DrawerTrigger>
+
+                    <DrawerContent>
+                      <div className="mx-auto w-full max-w-2xl px-4">
+                        <DrawerHeader className="px-0">
+                          <DrawerTitle>{p.title}</DrawerTitle>
+                          <DrawerDescription>
+                            {p.role ? `${p.role} • ` : ''}
+                            {p.tech.join(' • ')}
+                          </DrawerDescription>
+                        </DrawerHeader>
+
+                        <div className="space-y-5 pb-2">
+                          {p.details ? (
+                            <div>
+                              <p className="text-sm font-medium">Context</p>
+                              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                                {p.details}
+                              </p>
+                            </div>
+                          ) : null}
+
+                          {p.highlights?.length ? (
+                            <div>
+                              <p className="text-sm font-medium">Highlights</p>
+                              <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
+                                {p.highlights.map((h) => (
+                                  <li key={h}>{h}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          ) : null}
+
+                          {p.improvements?.length ? (
+                            <div>
+                              <p className="text-sm font-medium">What I’d improve next</p>
+                              <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
+                                {p.improvements.map((x) => (
+                                  <li key={x}>{x}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          ) : null}
+                        </div>
+
+                        <DrawerFooter className="px-0">
+                          <div className="flex flex-wrap gap-3">
+                            {p.links.map((l) => (
+                              <Button key={l.href} variant="outline" asChild>
+                                <Link
+                                  href={l.href}
+                                  target={l.href.startsWith('http') ? '_blank' : undefined}
+                                  rel={l.href.startsWith('http') ? 'noreferrer' : undefined}
+                                >
+                                  {l.label}
+                                </Link>
+                              </Button>
+                            ))}
+                            <DrawerClose asChild>
+                              <Button>Close</Button>
+                            </DrawerClose>
+                          </div>
+                        </DrawerFooter>
+                      </div>
+                    </DrawerContent>
+                  </Drawer>
                 </div>
               </CardContent>
             </Card>
