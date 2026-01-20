@@ -24,6 +24,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Behzad' }],
   creator: 'Behzad',
+
   openGraph: {
     type: 'website',
     url: site.url,
@@ -33,14 +34,19 @@ export const metadata: Metadata = {
     locale: site.locale,
     images: [{ url: site.ogImage, width: 1200, height: 630, alt: site.name }],
   },
+
   twitter: {
     card: 'summary_large_image',
     title: site.name,
     description: site.description,
-    images: [site.ogImage],
+    images: [site.twitterImage ?? site.ogImage],
   },
+
   icons: {
-    icon: [{ url: '/favicon.ico' }, { url: '/icon.png', type: 'image/png' }],
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon.png', type: 'image/png' },
+    ],
     apple: [{ url: '/apple-icon.png' }],
   },
 };
