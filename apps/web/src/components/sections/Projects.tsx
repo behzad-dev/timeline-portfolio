@@ -48,7 +48,9 @@ export function Projects() {
 
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg">{p.title}</CardTitle>
-                {p.role ? <p className="text-xs text-muted-foreground">{p.role}</p> : null}
+                {p.role ? (
+                  <p className="text-xs text-muted-foreground">{p.role}</p>
+                ) : null}
                 <p className="mt-2 text-sm text-muted-foreground">{p.description}</p>
               </CardHeader>
 
@@ -136,8 +138,12 @@ export function Projects() {
                               <Button key={l.href} variant="outline" asChild>
                                 <Link
                                   href={l.href}
-                                  target={l.href.startsWith('http') ? '_blank' : undefined}
-                                  rel={l.href.startsWith('http') ? 'noreferrer' : undefined}
+                                  target={
+                                    l.href.startsWith('http') ? '_blank' : undefined
+                                  }
+                                  rel={
+                                    l.href.startsWith('http') ? 'noreferrer' : undefined
+                                  }
                                 >
                                   {l.label}
                                 </Link>

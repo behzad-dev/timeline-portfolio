@@ -30,7 +30,8 @@ export function Contact() {
             </>
           ) : (
             <p className="text-sm text-muted-foreground">
-              I’m currently keeping my email hidden to avoid spam. For now, the best way is GitHub.
+              I’m currently keeping my email hidden to avoid spam. For now, the best way
+              is GitHub.
             </p>
           )}
 

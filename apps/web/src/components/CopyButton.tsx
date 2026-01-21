@@ -40,7 +40,13 @@ export function CopyButton({
   }
 
   return (
-    <Button type="button" variant="secondary" size="lg" onClick={onCopy} className={className}>
+    <Button
+      type="button"
+      variant="secondary"
+      size="lg"
+      onClick={onCopy}
+      className={className}
+    >
       {copied ? copiedLabel : label}
     </Button>
   );
