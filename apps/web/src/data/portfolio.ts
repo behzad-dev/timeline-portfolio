@@ -72,6 +72,15 @@ export const portfolio = {
 
   timeline: [
     {
+      id: 'early',
+      title: 'Early interest in computers',
+      bullets: [
+        'Fascinated by computers from a young age — always curious how things work.',
+        'Started experimenting with simple HTML/CSS and had a small weblog.',
+        'Made my first “game” using PowerPoint and learned basic programming with QBasic.',
+      ],
+    },
+    {
       id: 'iran',
       title: 'Iran — early career foundations',
       bullets: [
