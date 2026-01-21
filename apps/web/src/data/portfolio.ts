@@ -78,10 +78,11 @@ export const portfolio = {
         'Started building full-stack systems and internal tools in real production environments.',
       ],
     },
+
     {
       id: 'education',
       title: 'B.Sc. Software Engineering',
-      subtitle: 'Islamic Azad University, Tehran (Branch) — Iran',
+      subtitle: 'Islamic Azad University, Tehran (Parand) — Iran',
       start: '2010',
       end: '2016',
       bullets: [
@@ -89,9 +90,34 @@ export const portfolio = {
         'Worked on practical projects alongside core computer science coursework.',
       ],
     },
+
+    {
+      id: 'civil-service',
+      title: 'Civil service — IT support',
+      subtitle: 'Iran',
+      start: '2017',
+      end: '2018',
+      bullets: [
+        'Handled basic IT support and office workflows (PC setup, troubleshooting, documentation).',
+        'Helped users solve common computer issues and kept daily operations running smoothly.',
+      ],
+    },
+
+    {
+      id: 'early-it',
+      title: 'Early IT support / junior dev work',
+      subtitle: 'Iran',
+      start: '2018',
+      end: '2019',
+      bullets: [
+        'Supported small teams with IT tasks and basic web/dev work in short-term roles.',
+        'Built confidence in communication, delivery, and solving real-world problems.',
+      ],
+    },
+
     {
       id: 'melat-bank',
-      title: 'Software Developer — Melat Bank',
+      title: 'Software Developer — Behsazan Melat (Melat Bank)',
       subtitle: 'Tehran, Iran',
       start: 'Jun 2019',
       end: 'Jul 2021',
@@ -101,6 +127,7 @@ export const portfolio = {
         'Completed IBM ODM + IIB training and applied decision-automation concepts to integration work.',
       ],
     },
+
     {
       id: 'germany',
       title: 'Moved to Germany',
@@ -110,6 +137,7 @@ export const portfolio = {
         'Relocated to Germany and continued building production systems while improving language skills and local experience.',
       ],
     },
+
     {
       id: '21x',
       title: 'Software Developer — 21X AG (21.Finance)',
@@ -122,6 +150,7 @@ export const portfolio = {
         'Prototyped a React Native (Expo) mobile app and documented architecture for handover.',
       ],
     },
+
     {
       id: 'sviper',
       title: 'Software Developer — Sviper GmbH (The Sandbox)',
@@ -132,9 +161,10 @@ export const portfolio = {
         'Built backend features for moderation and back-office operations (workflows, ranking/logic, and admin tooling).',
         'Improved responsiveness and stability using Redis caching and event-driven processing with Kafka.',
         'Introduced safer delivery patterns: feature flags + automated checks, reducing production risk.',
-        'Containerized services and shipped via CI/CD; added observability (logs/metrics) to speed up debugging (Datadog).',
+        'Containerized services and shipped via CI/CD; added observability (Datadog) to speed up debugging.',
       ],
     },
+
     {
       id: 'now',
       title: 'Now',
@@ -142,8 +172,8 @@ export const portfolio = {
       start: 'Nov 2024',
       end: 'Present',
       bullets: [
-        'Building a timeline portfolio and sharpening end-to-end production workflow (Next.js, AWS, CI/CD, monitoring).',
-        'Continuing German learning (completed A2.2; working toward B1).',
+        'Building a timeline portfolio and sharpening end-to-end workflow (Next.js, AWS, CI/CD).',
+        'German learning: completed Goethe intensive courses (late 2025) and continuing with self-study toward B2.',
       ],
     },
   ],
@@ -201,15 +231,15 @@ export const portfolio = {
         'A premium-feeling portfolio with a scroll-drawn journey timeline, strong UI polish, and production AWS hosting + CI/CD.',
       role: 'Solo project',
       highlights: [
-        'Scroll-driven timeline with reduced-motion support.',
-        'Static export hosted on S3 + CloudFront + custom domain.',
-        'GitHub Actions deploy pipeline + SEO/social metadata.',
+        'Scroll-driven timeline with Framer Motion + reduced-motion support.',
+        'Static export to S3 + CloudFront + custom domain.',
+        'CI/CD deploy pipeline + SEO/social metadata.',
       ],
       details:
-        'Built this as a “production-minded” static portfolio: fast CDN delivery, real IaC, and a clean component system. Focus was polish, performance, and a credible end-to-end workflow.',
+        'Built this to refresh fundamentals and show real-world deployment: infra, caching, invalidations, and clean UI components.',
       improvements: [
-        'Add a contact form using SES (avoid email spam).',
-        'Add lightweight analytics (privacy-friendly).',
+        'Add case-study pages for deeper technical writeups.',
+        'Add light performance checks (Lighthouse / Playwright smoke test).',
       ],
       tech: [
         'Next.js',
@@ -234,12 +264,15 @@ export const portfolio = {
       role: 'Solo project',
       highlights: [
         'Clean responsive UI with TypeScript-first components.',
-        'Simple, maintainable state flow for fast iteration.',
+        'Simple, maintainable state flow.',
         'Deployed as a public demo for sharing and feedback.',
       ],
       details:
-        'Built as a frontend exercise: tight UI, quick feedback loop, and a clear “demo-able” experience. Kept the architecture simple and readable.',
-      improvements: ['Add tests for core game logic.'],
+        'A fun small project to practice UI flow, feedback loops, and shipping a complete small product.',
+      improvements: [
+        'Add levels / difficulty modes.',
+        'Add analytics to see where users drop off.',
+      ],
       tech: ['React', 'TypeScript'],
       image: { src: '/projects/emojiguess.png', alt: 'Screenshot of EmojiGuess game' },
       links: [
