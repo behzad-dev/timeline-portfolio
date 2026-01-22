@@ -36,6 +36,12 @@ jobs:
         working-directory: apps/web
         run: npm run build
 
+      - name: Validate deploy vars
+        run: |
+          test -n "${{ vars.AWS_REGION }}"
+          test -n "${{ vars.S3_BUCKET }}"
+          test -n "${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}"
+
       - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:

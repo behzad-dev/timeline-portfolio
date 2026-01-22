@@ -12,6 +12,10 @@ Live: https://behzadonline.com
 - AWS CDK (infrastructure)
 - GitHub Actions (deploy)
 
+## Repo structure
+- `apps/web` → Next.js website
+- `infra` → AWS CDK stack (S3 + CloudFront + Route53 + cert)
+
 ## Local development
 From repo root:
 
@@ -19,3 +23,4 @@ From repo root:
 cd apps/web
 npm install
 npm run dev
+# http://localhost:3000
