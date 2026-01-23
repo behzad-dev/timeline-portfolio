@@ -5,20 +5,23 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Section } from '@/components/Section';
 
+type CTA = {
+  label: string;
+  href: string;
+  variant: 'outline' | 'default';
+  external?: boolean;
+};
+
 export function Hero() {
   const { person, links } = portfolio;
 
-  const ctas = [
-    links.github
-      ? { label: 'GitHub', href: links.github, variant: 'outline' as const }
-      : null,
-    links.linkedin
-      ? { label: 'LinkedIn', href: links.linkedin, variant: 'outline' as const }
-      : null,
-    links.email
-      ? { label: 'Contact', href: `mailto:${links.email}`, variant: 'default' as const }
-      : null,
-  ].filter(Boolean);
+  const rawCtas: Array<CTA | null> = [
+    links.github ? { label: 'GitHub', href: links.github, variant: 'outline', external: true } : null,
+    links.linkedin ? { label: 'LinkedIn', href: links.linkedin, variant: 'outline', external: true } : null,
+    links.email ? { label: 'Contact', href: `mailto:${links.email}`, variant: 'default', external: false } : null,
+  ];
+
+  const ctas = rawCtas.filter((x): x is CTA => Boolean(x));
 
   return (
     <Section id="top" surface="none" className="pt-10 sm:pt-14">
@@ -44,13 +47,14 @@ export function Hero() {
 
           <div className="mt-7 flex flex-wrap gap-3">
             {ctas.map((cta) => (
-              <Button key={cta!.label} size="lg" variant={cta!.variant} asChild>
+              <Button key={cta.label} size="lg" variant={cta.variant} asChild>
                 <Link
-                  href={cta!.href}
-                  target={cta!.href.startsWith('http') ? '_blank' : undefined}
-                  rel={cta!.href.startsWith('http') ? 'noreferrer' : undefined}
+                  href={cta.href}
+                  target={cta.external ? '_blank' : undefined}
+                  rel={cta.external ? 'noreferrer noopener' : undefined}
+                  aria-label={cta.external ? `${cta.label} (opens in a new tab)` : cta.label}
                 >
-                  {cta!.label}
+                  {cta.label}
                 </Link>
               </Button>
             ))}
@@ -62,16 +66,13 @@ export function Hero() {
           <Separator className="my-4" />
           <ul className="space-y-3 text-sm text-muted-foreground">
             <li>
-              <span className="text-foreground">Stack:</span> React / Next.js / Node.js /
-              AWS
+              <span className="text-foreground">Stack:</span> React / Next.js / Node.js / AWS
             </li>
             <li>
-              <span className="text-foreground">Focus:</span> production-ready apps,
-              CI/CD, observability
+              <span className="text-foreground">Focus:</span> production-ready apps, CI/CD, observability
             </li>
             <li>
-              <span className="text-foreground">Based in:</span>{' '}
-              {person.location ?? 'Germany'}
+              <span className="text-foreground">Based in:</span> {person.location ?? 'Germany'}
             </li>
             <li>
               <span className="text-foreground">German:</span> A2.2 → B1 (in progress)

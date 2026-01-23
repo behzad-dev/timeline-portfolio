@@ -17,7 +17,7 @@ function formatRange(start?: string, end?: string) {
 
 function TimelineEntry({ item, index }: { item: TimelineItemType; index: number }) {
   const prefersReducedMotion = useReducedMotion();
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLLIElement | null>(null);
 
   const inView = useInView(ref, { margin: '-35% 0px -55% 0px', amount: 0.2 });
   const isLeft = index % 2 === 0;
@@ -25,22 +25,21 @@ function TimelineEntry({ item, index }: { item: TimelineItemType; index: number 
   const range = formatRange(item.start, item.end);
   const fromX = prefersReducedMotion ? 0 : isLeft ? -18 : 18;
 
-  const cardClass =
-    'bg-background/80 shadow-sm backdrop-blur transition-shadow hover:shadow-md';
+  const cardClass = 'bg-background/80 shadow-sm backdrop-blur transition-shadow hover:shadow-md';
 
   return (
-    <div ref={ref} className="relative">
-      {/* Dot */}
+    <li ref={ref} className="relative">
+      {/* Dot (decorative) */}
       <motion.div
+        aria-hidden="true"
         className="absolute left-4 top-8 h-3.5 w-3.5 -translate-x-1/2 rounded-full bg-muted-foreground/35 ring-4 ring-background md:left-1/2"
-        animate={
-          inView ? { backgroundColor: 'var(--primary)', scale: 1.25 } : { scale: 1 }
-        }
+        animate={inView ? { backgroundColor: 'var(--primary)', scale: 1.25 } : { scale: 1 }}
         transition={{ duration: prefersReducedMotion ? 0 : 0.25 }}
       />
 
-      {/* Glow */}
+      {/* Glow (decorative) */}
       <motion.div
+        aria-hidden="true"
         className="absolute left-4 top-8 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/15 blur-xl md:left-1/2"
         animate={inView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: prefersReducedMotion ? 0 : 0.25 }}
@@ -73,6 +72,7 @@ function TimelineEntry({ item, index }: { item: TimelineItemType; index: number 
                     <p className="text-sm text-muted-foreground">{item.subtitle}</p>
                   ) : null}
                 </CardHeader>
+
                 <CardContent>
                   <ul className="list-disc space-y-1 pl-5 text-sm text-foreground/80">
                     {item.bullets.map((b) => (
@@ -110,6 +110,7 @@ function TimelineEntry({ item, index }: { item: TimelineItemType; index: number 
                     <p className="text-sm text-muted-foreground">{item.subtitle}</p>
                   ) : null}
                 </CardHeader>
+
                 <CardContent>
                   <ul className="list-disc space-y-1 pl-5 text-sm text-foreground/80">
                     {item.bullets.map((b) => (
@@ -124,7 +125,7 @@ function TimelineEntry({ item, index }: { item: TimelineItemType; index: number 
           )}
         </div>
       </div>
-    </div>
+    </li>
   );
 }
 
@@ -145,11 +146,15 @@ export function Timeline() {
       subtitle="The story behind my work — from Iran to Germany, and what I’m building now."
     >
       <div ref={containerRef} className="relative">
-        {/* Base rail */}
-        <div className="absolute left-4 top-0 h-full w-[2px] -translate-x-1/2 bg-border/70 md:left-1/2" />
+        {/* Base rail (decorative) */}
+        <div
+          aria-hidden="true"
+          className="absolute left-4 top-0 h-full w-[2px] -translate-x-1/2 bg-border/70 md:left-1/2"
+        />
 
-        {/* Fill rail */}
+        {/* Fill rail (decorative) */}
         <motion.div
+          aria-hidden="true"
           className="absolute left-4 top-0 h-full w-[2px] -translate-x-1/2 origin-top md:left-1/2"
           style={{
             scaleY: prefersReducedMotion ? 1 : scrollYProgress,
@@ -157,11 +162,11 @@ export function Timeline() {
           }}
         />
 
-        <div className="space-y-6 md:space-y-7">
+        <ol className="space-y-6 md:space-y-7">
           {portfolio.timeline.map((item, idx) => (
             <TimelineEntry key={item.id} item={item} index={idx} />
           ))}
-        </div>
+        </ol>
       </div>
     </Section>
   );

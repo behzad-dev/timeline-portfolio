@@ -23,9 +23,14 @@ export function Section({
   surfaceClassName,
   children,
 }: SectionProps) {
+  const titleId = title && id ? `${id}-title` : undefined;
+  const subtitleId = subtitle && id ? `${id}-subtitle` : undefined;
+
   return (
     <section
       id={id}
+      aria-labelledby={titleId}
+      aria-describedby={subtitleId}
       className={cn(
         'relative py-14 sm:py-16 scroll-mt-24',
         variant === 'tint' &&
@@ -42,12 +47,19 @@ export function Section({
             )}
           >
             {title ? (
-              <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              <h2
+                id={titleId}
+                className="text-2xl font-semibold tracking-tight sm:text-3xl"
+              >
                 {title}
               </h2>
             ) : null}
+
             {subtitle ? (
-              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+              <p
+                id={subtitleId}
+                className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base"
+              >
                 {subtitle}
               </p>
             ) : null}
@@ -59,16 +71,25 @@ export function Section({
         ) : (
           <>
             {title ? (
-              <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+              <h2
+                id={titleId}
+                className="text-2xl font-semibold tracking-tight sm:text-3xl"
+              >
                 {title}
               </h2>
             ) : null}
+
             {subtitle ? (
-              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+              <p
+                id={subtitleId}
+                className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base"
+              >
                 {subtitle}
               </p>
             ) : null}
+
             {title || subtitle ? <div className="mt-8" /> : null}
+
             {children}
           </>
         )}

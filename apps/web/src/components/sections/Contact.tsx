@@ -7,7 +7,6 @@ import { CopyButton } from '@/components/CopyButton';
 
 export function Contact() {
   const { links } = portfolio;
-
   const hasEmail = Boolean(links.email);
 
   return (
@@ -37,7 +36,12 @@ export function Contact() {
 
           {links.github ? (
             <Button size="lg" variant="outline" asChild>
-              <Link href={links.github} target="_blank" rel="noreferrer">
+              <Link
+                href={links.github}
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="GitHub (opens in a new tab)"
+              >
                 GitHub
               </Link>
             </Button>
@@ -45,7 +49,12 @@ export function Contact() {
 
           {links.linkedin ? (
             <Button size="lg" variant="outline" asChild>
-              <Link href={links.linkedin} target="_blank" rel="noreferrer">
+              <Link
+                href={links.linkedin}
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="LinkedIn (opens in a new tab)"
+              >
                 LinkedIn
               </Link>
             </Button>

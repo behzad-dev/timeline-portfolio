@@ -24,7 +24,6 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Behzad' }],
   creator: 'Behzad',
-
   openGraph: {
     type: 'website',
     url: site.url,
@@ -34,14 +33,12 @@ export const metadata: Metadata = {
     locale: site.locale,
     images: [{ url: site.ogImage, width: 1200, height: 630, alt: site.name }],
   },
-
   twitter: {
     card: 'summary_large_image',
     title: site.name,
     description: site.description,
-    images: [site.twitterImage ?? site.ogImage],
+    images: [site.ogImage],
   },
-
   icons: {
     icon: [{ url: '/favicon.ico' }, { url: '/icon.png', type: 'image/png' }],
     apple: [{ url: '/apple-icon.png' }],
@@ -52,14 +49,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className="min-h-screen bg-background text-foreground antialiased">
-        <div className="pointer-events-none fixed inset-0 -z-10">
+        {/* Skip link (only visible when tabbed to) */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-background focus:px-3 focus:py-2 focus:text-sm focus:shadow-md focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background"
+        >
+          Skip to content
+        </a>
+
+        {/* Background decoration */}
+        <div className="pointer-events-none fixed inset-0 -z-10" aria-hidden="true">
           <div className="absolute inset-0 opacity-[0.18] bg-[radial-gradient(60%_50%_at_50%_0%,var(--primary),transparent_60%)]" />
           <div className="absolute inset-0 opacity-[0.16] bg-[radial-gradient(45%_45%_at_0%_20%,var(--chart-2),transparent_55%)]" />
           <div className="absolute inset-0 opacity-[0.14] bg-[radial-gradient(45%_45%_at_100%_25%,var(--chart-4),transparent_60%)]" />
         </div>
 
         <SiteHeader />
-        <main className="min-h-screen">{children}</main>
+
+        <main id="main-content" tabIndex={-1} className="min-h-screen focus:outline-none">
+          {children}
+        </main>
       </body>
     </html>
   );
