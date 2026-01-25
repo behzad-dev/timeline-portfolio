@@ -2,25 +2,60 @@
 
 My personal portfolio website with a scroll-drawn timeline and a clean “production-ish” setup.
 
-Live: https://behzadonline.com
+**Live:** https://behzadonline.com
 
 ## What’s inside
 - Next.js (App Router) + TypeScript
 - Tailwind + shadcn/ui
 - Framer Motion (timeline animations)
-- Static export → S3 + CloudFront
+- Static export (`output: export`) → S3 + CloudFront
 - AWS CDK (infrastructure)
-- GitHub Actions (deploy)
+- GitHub Actions (deploy via OIDC)
 
 ## Repo structure
 - `apps/web` → Next.js website
-- `infra` → AWS CDK stack (S3 + CloudFront + Route53 + cert)
+- `infra` → AWS CDK stack (S3 + CloudFront + domain + cert)
 
-## Local development
+## Local development (dev server)
 From repo root:
 
-```bash
-cd apps/web
-npm install
-npm run dev
-# http://localhost:3000
+- cd apps/web
+- npm install
+- npm run dev
+
+Then open: http://localhost:3000
+
+## Build + preview the static export (this is what production uses)
+Because this project uses `output: export`, **`next start` will NOT work**.
+
+From repo root:
+
+- cd apps/web
+- npm run build
+- npx serve@latest out
+
+Then open the URL that `serve` prints.
+
+## Deployment (automatic)
+This repo deploys automatically via GitHub Actions.
+
+### Triggers
+- Push to `main`
+- Manual run (`workflow_dispatch`)
+
+### What it does
+- Installs dependencies
+- Builds the static export
+- Syncs `apps/web/out` to S3
+- Invalidates CloudFront cache
+
+## Required GitHub settings
+GitHub → Settings → Secrets and variables → Actions
+
+### Secrets
+- `AWS_ROLE_ARN` = IAM role that GitHub Actions assumes via OIDC
+
+### Variables
+- `AWS_REGION` = for example `eu-central-1`
+- `S3_BUCKET` = your site bucket name
+- `CLOUDFRONT_DISTRIBUTION_ID` = your CloudFront distribution id (looks like `E1...`)

@@ -1,14 +1,45 @@
-# Welcome to your CDK TypeScript project
+# Infra (CDK)
 
-This is a blank project for CDK development with TypeScript.
+This folder contains the AWS CDK (TypeScript) code that creates the infrastructure for the portfolio site: S3 + CloudFront + domain + certificate.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## What this creates
+
+- S3 bucket for static website files
+- CloudFront distribution in front of the bucket
+- Domain + SSL certificate (ACM) for HTTPS
+
+## Prerequisites
+
+- AWS CLI configured (`aws configure`)
+- Node.js installed
+- Permissions to deploy CDK stacks in your AWS account
+
+## Install
+
+From repo root:
+
+- cd infra
+- npm install
+
+## Deploy
+
+First time (or if CDK was never bootstrapped in this account/region):
+
+- npx cdk bootstrap
+
+Deploy the infrastructure:
+
+- npx cdk deploy
 
 ## Useful commands
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `npx cdk deploy`  deploy this stack to your default AWS account/region
-* `npx cdk diff`    compare deployed stack with current state
-* `npx cdk synth`   emits the synthesized CloudFormation template
+Run these from inside `infra`:
+
+- npx cdk diff (see changes before deploying)
+- npx cdk synth (generate CloudFormation template)
+- npx cdk destroy (delete the stack)
+
+## Notes
+
+- CloudFront needs the SSL certificate in `us-east-1` (that’s normal for CloudFront).
+- After infra is deployed, the website content upload is handled by GitHub Actions (main README explains it).
