@@ -2,6 +2,7 @@ import './globals.css';
 import { SiteHeader } from '@/components/SiteHeader';
 import type { Metadata } from 'next';
 import { site } from '@/config/site';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -69,6 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main-content" tabIndex={-1} className="min-h-screen focus:outline-none">
           {children}
         </main>
+        <GoogleAnalytics gaId="G-W31W1ZNLGM" />
       </body>
     </html>
   );
