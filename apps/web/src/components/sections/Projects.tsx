@@ -46,7 +46,11 @@ function ProjectLinkButton({ link }: { link: ProjectLinkType }) {
 
 export function Projects() {
   return (
-    <section id="projects" className="py-14 scroll-mt-20" aria-labelledby="projects-title">
+    <section
+      id="projects"
+      className="py-14 scroll-mt-20"
+      aria-labelledby="projects-title"
+    >
       <PageContainer>
         <h2 id="projects-title" className="text-2xl font-semibold tracking-tight">
           Featured Projects
@@ -75,7 +79,9 @@ export function Projects() {
 
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg">{p.title}</CardTitle>
-                {p.role ? <p className="text-xs text-muted-foreground">{p.role}</p> : null}
+                {p.role ? (
+                  <p className="text-xs text-muted-foreground">{p.role}</p>
+                ) : null}
                 <p className="mt-2 text-sm text-muted-foreground">{p.description}</p>
               </CardHeader>
 
@@ -109,7 +115,10 @@ export function Projects() {
 
                   <Drawer>
                     <DrawerTrigger asChild>
-                      <Button variant="secondary" aria-label={`Open details for ${p.title}`}>
+                      <Button
+                        variant="secondary"
+                        aria-label={`Open details for ${p.title}`}
+                      >
                         More
                       </Button>
                     </DrawerTrigger>

@@ -25,7 +25,8 @@ function TimelineEntry({ item, index }: { item: TimelineItemType; index: number 
   const range = formatRange(item.start, item.end);
   const fromX = prefersReducedMotion ? 0 : isLeft ? -18 : 18;
 
-  const cardClass = 'bg-background/80 shadow-sm backdrop-blur transition-shadow hover:shadow-md';
+  const cardClass =
+    'bg-background/80 shadow-sm backdrop-blur transition-shadow hover:shadow-md';
 
   return (
     <li ref={ref} className="relative">
@@ -33,7 +34,9 @@ function TimelineEntry({ item, index }: { item: TimelineItemType; index: number 
       <motion.div
         aria-hidden="true"
         className="absolute left-4 top-8 h-3.5 w-3.5 -translate-x-1/2 rounded-full bg-muted-foreground/35 ring-4 ring-background md:left-1/2"
-        animate={inView ? { backgroundColor: 'var(--primary)', scale: 1.25 } : { scale: 1 }}
+        animate={
+          inView ? { backgroundColor: 'var(--primary)', scale: 1.25 } : { scale: 1 }
+        }
         transition={{ duration: prefersReducedMotion ? 0 : 0.25 }}
       />
 

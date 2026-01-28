@@ -16,9 +16,20 @@ export function Hero() {
   const { person, links } = portfolio;
 
   const rawCtas: Array<CTA | null> = [
-    links.github ? { label: 'GitHub', href: links.github, variant: 'outline', external: true } : null,
-    links.linkedin ? { label: 'LinkedIn', href: links.linkedin, variant: 'outline', external: true } : null,
-    links.email ? { label: 'Contact', href: `mailto:${links.email}`, variant: 'default', external: false } : null,
+    links.github
+      ? { label: 'GitHub', href: links.github, variant: 'outline', external: true }
+      : null,
+    links.linkedin
+      ? { label: 'LinkedIn', href: links.linkedin, variant: 'outline', external: true }
+      : null,
+    links.email
+      ? {
+          label: 'Contact',
+          href: `mailto:${links.email}`,
+          variant: 'default',
+          external: false,
+        }
+      : null,
   ];
 
   const ctas = rawCtas.filter((x): x is CTA => Boolean(x));
@@ -52,7 +63,9 @@ export function Hero() {
                   href={cta.href}
                   target={cta.external ? '_blank' : undefined}
                   rel={cta.external ? 'noreferrer noopener' : undefined}
-                  aria-label={cta.external ? `${cta.label} (opens in a new tab)` : cta.label}
+                  aria-label={
+                    cta.external ? `${cta.label} (opens in a new tab)` : cta.label
+                  }
                 >
                   {cta.label}
                 </Link>
@@ -66,13 +79,16 @@ export function Hero() {
           <Separator className="my-4" />
           <ul className="space-y-3 text-sm text-muted-foreground">
             <li>
-              <span className="text-foreground">Stack:</span> React / Next.js / Node.js / AWS
+              <span className="text-foreground">Stack:</span> React / Next.js / Node.js /
+              AWS
             </li>
             <li>
-              <span className="text-foreground">Focus:</span> production-ready apps, CI/CD, observability
+              <span className="text-foreground">Focus:</span> production-ready apps,
+              CI/CD, observability
             </li>
             <li>
-              <span className="text-foreground">Based in:</span> {person.location ?? 'Germany'}
+              <span className="text-foreground">Based in:</span>{' '}
+              {person.location ?? 'Germany'}
             </li>
             <li>
               <span className="text-foreground">German:</span> A2.2 → B1 (in progress)

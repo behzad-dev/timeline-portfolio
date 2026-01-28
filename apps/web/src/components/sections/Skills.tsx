@@ -31,7 +31,10 @@ export function Skills() {
               </CardHeader>
 
               <CardContent>
-                <ul className="flex flex-wrap gap-2" aria-label={`${category.name} skills`}>
+                <ul
+                  className="flex flex-wrap gap-2"
+                  aria-label={`${category.name} skills`}
+                >
                   {category.items.map((item: string) => (
                     <li key={item}>
                       <Badge variant="secondary">{item}</Badge>
