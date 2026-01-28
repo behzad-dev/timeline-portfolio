@@ -229,9 +229,7 @@ a {
 
   /* Optional extra pop (works in modern browsers) */
   .name-glow {
-    filter: drop-shadow(
-      0 10px 26px color-mix(in oklch, var(--primary) 35%, transparent)
-    );
+    filter: drop-shadow(0 10px 26px color-mix(in oklch, var(--primary) 35%, transparent));
   }
 
   @media (prefers-reduced-motion: reduce) {

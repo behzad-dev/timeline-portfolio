@@ -116,7 +116,9 @@ export function Hero() {
                   href={cta.href}
                   target={cta.external ? '_blank' : undefined}
                   rel={cta.external ? 'noreferrer noopener' : undefined}
-                  aria-label={cta.external ? `${cta.label} (opens in a new tab)` : cta.label}
+                  aria-label={
+                    cta.external ? `${cta.label} (opens in a new tab)` : cta.label
+                  }
                 >
                   {cta.label}
                 </Link>
@@ -135,8 +137,8 @@ export function Hero() {
               AWS
             </li>
             <li>
-              <span className="text-foreground">Focus:</span> production-ready apps, CI/CD,
-              observability
+              <span className="text-foreground">Focus:</span> production-ready apps,
+              CI/CD, observability
             </li>
             <li>
               <span className="text-foreground">Based in:</span>{' '}
