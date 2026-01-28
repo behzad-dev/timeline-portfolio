@@ -11,7 +11,9 @@
     "format": "prettier --write . --ignore-path .prettierignore",
     "format:check": "prettier --check . --ignore-path .prettierignore",
     "export": "next export",
-    "preview": "npm run build && npm run export && npx serve@latest out"
+    "preview": "npm run build && npm run export && npx serve@latest out",
+    "test:e2e": "playwright test",
+    "test:e2e:ci": "playwright test --reporter=line"
   },
   "dependencies": {
     "@next/third-parties": "^16.1.4",
@@ -29,6 +31,7 @@
     "vaul": "^1.1.2"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.0",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/node": "^20",
     "@types/react": "^19",

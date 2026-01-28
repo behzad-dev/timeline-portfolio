@@ -117,7 +117,8 @@ export function Projects() {
                     <DrawerTrigger asChild>
                       <Button
                         variant="secondary"
-                        aria-label={`Open details for ${p.title}`}
+                        aria-label={`More about ${p.title}`}
+                        data-testid={`project-more-${p.id}`}
                       >
                         More
                       </Button>
@@ -173,7 +174,12 @@ export function Projects() {
                             ))}
 
                             <DrawerClose asChild>
-                              <Button aria-label="Close project details">Close</Button>
+                              <Button
+                                aria-label="Close project details"
+                                data-testid="project-drawer-close"
+                              >
+                                Close
+                              </Button>
                             </DrawerClose>
                           </div>
                         </DrawerFooter>
