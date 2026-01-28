@@ -46,6 +46,16 @@ export class WebsiteStack extends cdk.Stack {
       ],
     });
 
+    // Outputs used by GitHub Actions
+    new cdk.CfnOutput(this, 'SiteBucketName', {
+      value: bucket.bucketName,
+    });
+
+    new cdk.CfnOutput(this, 'CloudFrontDistributionId', {
+      value: distribution.distributionId,
+    });
+
+    // Extra helpful outputs (optional)
     new cdk.CfnOutput(this, 'BucketName', { value: bucket.bucketName });
     new cdk.CfnOutput(this, 'DistributionId', { value: distribution.distributionId });
     new cdk.CfnOutput(this, 'CloudFrontDomainName', { value: distribution.domainName });

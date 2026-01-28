@@ -39,8 +39,6 @@ jobs:
       - name: Validate deploy vars
         run: |
           test -n "${{ vars.AWS_REGION }}"
-          test -n "${{ vars.S3_BUCKET }}"
-          test -n "${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}"
 
       - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
@@ -48,12 +46,66 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ vars.AWS_REGION }}
 
+      - name: Resolve deploy targets from CDK outputs
+        id: targets
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          WANT_BUCKET_KEY="SiteBucketName"
+          WANT_DIST_KEY="CloudFrontDistributionId"
+
+          STACK_NAME="${{ vars.CDK_STACK_NAME }}"
+          if [ -z "${STACK_NAME}" ]; then
+            echo "CDK_STACK_NAME not set. Auto-detecting stack by outputs..."
+
+            STACK_NAME="$(aws cloudformation list-stacks \
+              --stack-status-filter CREATE_COMPLETE UPDATE_COMPLETE UPDATE_ROLLBACK_COMPLETE \
+              --query "StackSummaries[].StackName" --output text | tr '\t' '\n' | while read -r name; do
+                outputs="$(aws cloudformation describe-stacks --stack-name "$name" \
+                  --query "Stacks[0].Outputs" --output json 2>/dev/null || echo "[]")"
+
+                has_bucket="$(echo "$outputs" | jq -r --arg k "$WANT_BUCKET_KEY" 'map(.OutputKey) | index($k) != null')"
+                has_dist="$(echo "$outputs" | jq -r --arg k "$WANT_DIST_KEY" 'map(.OutputKey) | index($k) != null')"
+
+                if [ "$has_bucket" = "true" ] && [ "$has_dist" = "true" ]; then
+                  echo "$name"
+                  break
+                fi
+              done)"
+
+            if [ -z "${STACK_NAME}" ]; then
+              echo "Could not find a stack with outputs ${WANT_BUCKET_KEY} + ${WANT_DIST_KEY}."
+              echo "Option: set vars.CDK_STACK_NAME in GitHub to your stack name."
+              exit 1
+            fi
+          fi
+
+          BUCKET="$(aws cloudformation describe-stacks --stack-name "$STACK_NAME" \
+            --query "Stacks[0].Outputs[?OutputKey=='SiteBucketName'].OutputValue" --output text)"
+
+          DIST_ID="$(aws cloudformation describe-stacks --stack-name "$STACK_NAME" \
+            --query "Stacks[0].Outputs[?OutputKey=='CloudFrontDistributionId'].OutputValue" --output text)"
+
+          if [ -z "$BUCKET" ] || [ -z "$DIST_ID" ]; then
+            echo "Outputs missing or empty on stack: $STACK_NAME"
+            exit 1
+          fi
+
+          echo "bucket=$BUCKET" >> "$GITHUB_OUTPUT"
+          echo "distribution_id=$DIST_ID" >> "$GITHUB_OUTPUT"
+          echo "stack=$STACK_NAME" >> "$GITHUB_OUTPUT"
+
+          echo "Using stack: $STACK_NAME"
+          echo "Bucket: $BUCKET"
+          echo "Distribution: $DIST_ID"
+
       - name: Sync to S3
         run: |
-          aws s3 sync apps/web/out s3://${{ vars.S3_BUCKET }} --delete
+          aws s3 sync apps/web/out s3://${{ steps.targets.outputs.bucket }} --delete
 
       - name: Invalidate CloudFront
         run: |
           aws cloudfront create-invalidation \
-            --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --distribution-id ${{ steps.targets.outputs.distribution_id }} \
             --paths "/*"
