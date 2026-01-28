@@ -35,8 +35,58 @@ export function Hero() {
   const ctas = rawCtas.filter((x): x is CTA => Boolean(x));
 
   return (
-    <Section id="top" surface="none" className="pt-10 sm:pt-14">
+    <Section id="top" surface="none" className="relative pt-10 sm:pt-14">
+      {/* Animated aurora background */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+      >
+        {/* Big soft blobs */}
+        <div
+          className="absolute -top-32 left-1/2 h-[26rem] w-[26rem] -translate-x-1/2 rounded-full
+                     bg-[radial-gradient(circle_at_30%_30%,var(--primary),transparent_60%)]
+                     opacity-20 blur-3xl
+                     animate-[blob_18s_ease-in-out_infinite]
+                     motion-reduce:[animation:none]"
+        />
+
+        <div
+          className="absolute -left-28 top-24 h-[22rem] w-[22rem] rounded-full
+                     bg-[radial-gradient(circle_at_30%_30%,var(--chart-2),transparent_60%)]
+                     opacity-16 blur-3xl
+                     animate-[blob_22s_ease-in-out_infinite]
+                     [animation-delay:-6s]
+                     motion-reduce:[animation:none]"
+        />
+
+        <div
+          className="absolute -right-28 top-8 h-[22rem] w-[22rem] rounded-full
+                     bg-[radial-gradient(circle_at_30%_30%,var(--chart-4),transparent_60%)]
+                     opacity-14 blur-3xl
+                     animate-[blob_26s_ease-in-out_infinite]
+                     [animation-delay:-12s]
+                     motion-reduce:[animation:none]"
+        />
+
+        {/* Subtle grid texture */}
+        <div
+          className="absolute inset-0 opacity-[0.10]
+                     bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)]
+                     bg-[size:64px_64px]
+                     [mask-image:radial-gradient(ellipse_at_top,black_45%,transparent_75%)]"
+        />
+
+        {/* Soft moving sweep */}
+        <div
+          className="absolute inset-0 opacity-40
+                     bg-[linear-gradient(110deg,transparent,rgb(255_255_255_/_0.12),transparent)]
+                     animate-[shimmer_7.5s_ease-in-out_infinite]
+                     motion-reduce:[animation:none]"
+        />
+      </div>
+
       <div className="grid gap-10 md:grid-cols-[1.15fr_0.85fr] md:items-start">
+        {/* Left column */}
         <div>
           <div className="flex flex-wrap items-center gap-3">
             <Badge variant="secondary">Available</Badge>
@@ -44,8 +94,11 @@ export function Hero() {
           </div>
 
           <h1 className="mt-4 text-5xl font-semibold tracking-tight md:text-6xl">
-            <span className="relative">
-              {person.name}
+            <span className="relative inline-block">
+              {/* Animated name */}
+              <span className="name-gradient name-glow">{person.name}</span>
+
+              {/* Soft glow behind name */}
               <span className="pointer-events-none absolute -inset-x-6 -inset-y-3 -z-10 rounded-3xl bg-primary/10 blur-2xl" />
             </span>
           </h1>
@@ -63,9 +116,7 @@ export function Hero() {
                   href={cta.href}
                   target={cta.external ? '_blank' : undefined}
                   rel={cta.external ? 'noreferrer noopener' : undefined}
-                  aria-label={
-                    cta.external ? `${cta.label} (opens in a new tab)` : cta.label
-                  }
+                  aria-label={cta.external ? `${cta.label} (opens in a new tab)` : cta.label}
                 >
                   {cta.label}
                 </Link>
@@ -74,6 +125,7 @@ export function Hero() {
           </div>
         </div>
 
+        {/* Right column card */}
         <div className="rounded-2xl border bg-background/55 p-5 shadow-sm backdrop-blur">
           <p className="text-sm font-medium">Highlights</p>
           <Separator className="my-4" />
@@ -83,8 +135,8 @@ export function Hero() {
               AWS
             </li>
             <li>
-              <span className="text-foreground">Focus:</span> production-ready apps,
-              CI/CD, observability
+              <span className="text-foreground">Focus:</span> production-ready apps, CI/CD,
+              observability
             </li>
             <li>
               <span className="text-foreground">Based in:</span>{' '}

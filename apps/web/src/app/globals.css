@@ -175,3 +175,68 @@ a {
     scroll-behavior: auto !important;
   }
 }
+
+@keyframes gradient-pan {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes blob {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(18px, -22px, 0) scale(1.06);
+  }
+  66% {
+    transform: translate3d(-22px, 14px, 0) scale(0.96);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-35%);
+  }
+  100% {
+    transform: translateX(35%);
+  }
+}
+
+@layer utilities {
+  .name-gradient {
+    background-image: linear-gradient(
+      90deg,
+      var(--primary),
+      var(--chart-2),
+      var(--chart-4),
+      var(--chart-5),
+      var(--primary)
+    );
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-pan 8s ease infinite;
+  }
+
+  /* Optional extra pop (works in modern browsers) */
+  .name-glow {
+    filter: drop-shadow(
+      0 10px 26px color-mix(in oklch, var(--primary) 35%, transparent)
+    );
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .name-gradient {
+      animation: none;
+    }
+  }
+}
