@@ -1,4 +1,4 @@
-# - Timeline Portfolio -
+# Timeline Portfolio
 
 My personal portfolio website with a scroll-drawn timeline and a clean “production-ish” setup.
 
@@ -57,5 +57,6 @@ GitHub → Settings → Secrets and variables → Actions
 
 ### Variables
 - `AWS_REGION` = for example `eu-central-1`
-- `S3_BUCKET` = your site bucket name
-- `CLOUDFRONT_DISTRIBUTION_ID` = your CloudFront distribution id (looks like `E1...`)
+- `CDK_STACK_NAME` = your deployed stack name (example: `TimelinePortfolioWebsite`)
+
+Note: the workflow reads the S3 bucket name + CloudFront distribution id from CDK stack outputs, so you don’t need `S3_BUCKET` or `CLOUDFRONT_DISTRIBUTION_ID` variables anymore.
