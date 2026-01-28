@@ -1,4 +1,4 @@
-# Timeline Portfolio
+# - Timeline Portfolio -
 
 My personal portfolio website with a scroll-drawn timeline and a clean “production-ish” setup.
 
