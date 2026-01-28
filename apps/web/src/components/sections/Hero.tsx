@@ -145,7 +145,7 @@ export function Hero() {
               {person.location ?? 'Germany'}
             </li>
             <li>
-              <span className="text-foreground">German:</span> A2.2 → B1 (in progress)
+              <span className="text-foreground">German:</span> B1 → B2 (in progress)
             </li>
           </ul>
         </div>

@@ -146,7 +146,7 @@ export function Timeline() {
       id="journey"
       variant="tint"
       title="Journey"
-      subtitle="The story behind my work — from Iran to Germany, and what I’m building now."
+      subtitle="The story behind my work, from Iran to Germany, and what I’m building now."
     >
       <div ref={containerRef} className="relative">
         {/* Base rail (decorative) */}
