@@ -234,6 +234,42 @@ export const portfolio = {
 
   projects: [
     {
+      id: 'cleanup-challenge',
+      title: 'Cleanup Challenge',
+      description:
+        'A pilot-ready cleanup challenge product for teams: join by QR, log impact in seconds, follow a live leaderboard, and export an executive-ready impact report.',
+      highlights: [
+        'QR-based join flow with no app download required.',
+        'Live leaderboard for team competition and visible progress.',
+        'Branded PDF report + unlisted share page for internal and external sharing.',
+      ],
+      details:
+        'Built as a privacy-first web product for companies, schools, and organizations that want a measurable cleanup campaign with proof, storytelling, and a shareable final report.',
+      improvements: [
+        'Add organizer dashboard screenshots once the product UI is finalized.',
+        'Add a deeper technical case study covering report generation, moderation, and privacy decisions.',
+      ],
+      tech: [
+        'QR Join',
+        'Live Leaderboard',
+        'PDF Report',
+        'Share Page',
+        'Privacy-first',
+        'Bilingual UX',
+      ],
+      image: {
+        src: '/projects/cleanup-challenge.png',
+        alt: 'Screenshot of Cleanup Challenge',
+      },
+      links: [
+        { label: 'Live', href: 'https://www.greenimpactreport.com/' },
+        {
+          label: 'Sample Report',
+          href: 'https://www.greenimpactreport.com/sample-report.pdf',
+        },
+      ],
+    },
+    {
       id: 'timeline-portfolio',
       title: 'Timeline Portfolio',
       description:
