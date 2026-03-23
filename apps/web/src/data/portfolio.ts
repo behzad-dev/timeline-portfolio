@@ -236,6 +236,7 @@ export const portfolio = {
     {
       id: 'cleanup-challenge',
       title: 'Cleanup Challenge',
+      role: 'Solo project',
       description:
         'A pilot-ready cleanup challenge product for teams: join by QR, log impact in seconds, follow a live leaderboard, and export an executive-ready impact report.',
       highlights: [
