@@ -66,7 +66,7 @@ export const portfolio = {
   links: {
     github: 'https://github.com/behzad-dev',
     linkedin: undefined,
-    email: undefined,
+    email: 'behzadn91@outlook.com',
     cvUrl: undefined,
   },
 
