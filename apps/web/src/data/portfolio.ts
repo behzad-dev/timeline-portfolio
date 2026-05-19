@@ -271,6 +271,40 @@ export const portfolio = {
       ],
     },
     {
+      id: 'nordstern-bau-website',
+      title: 'Nordstern Bauunternehmen Website',
+      description:
+        'A custom-coded corporate website for a construction company, built to present services and projects professionally, support lead generation, and provide a practical admin panel for ongoing content management.',
+      role: 'Freelance Full-stack Developer',
+      highlights: [
+        'Built a custom admin panel to manage projects, service pages, homepage sections, company/contact info, and SEO fields.',
+        'Structured the website with strong technical SEO foundations including clean URLs, meta fields, sitemap, robots.txt, structured data, canonical tags, and image alt text support.',
+        'Designed a scalable content setup with project detail pages, image galleries, embedded video support, and a blog-ready structure for future growth.',
+        'Created a clean one-codebase architecture to keep frontend and backend maintainable and ready for future expansion.',
+      ],
+      details:
+        'Developed as a fully custom solution instead of using WordPress or a generic site builder. The project focused on a modern and professional presentation, practical day-to-day content editing for the client, and a scalable technical foundation for SEO and future development.',
+      improvements: [
+        'Add final live website screenshots and admin panel screenshots.',
+        'Add a deeper technical case study about the admin architecture, Prisma schema, and SEO implementation decisions.',
+      ],
+      tech: [
+        'Next.js',
+        'TypeScript',
+        'PostgreSQL',
+        'Prisma',
+        'Custom Admin Panel',
+        'SEO',
+        'Google Analytics',
+        'Google Search Console',
+      ],
+      image: {
+        src: '/projects/nordstern-bau.png',
+        alt: 'Screenshot of Nordstern Bauunternehmen website',
+      },
+      links: [{ label: 'Live', href: 'https://www.nordstern-bauunternehmen.de/' }],
+    },
+    {
       id: 'timeline-portfolio',
       title: 'Timeline Portfolio',
       description:
