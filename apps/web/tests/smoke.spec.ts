@@ -6,6 +6,7 @@ test('home loads and main sections render', async ({ page }) => {
 
   // The page actually loaded (basic check)
   await expect(page.locator('body')).toBeVisible();
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
 
   // Make sure sections exist
   await expect(page.locator('#journey')).toBeVisible();
@@ -27,4 +28,14 @@ test('home loads and main sections render', async ({ page }) => {
   // Drawer should show close button
   const closeBtn = page.locator('[data-testid="project-drawer-close"]');
   await expect(closeBtn).toBeVisible();
+});
+
+test('crawler discovery is disabled', async ({ request }) => {
+  const robots = await request.get('/robots.txt');
+
+  expect(robots.ok()).toBeTruthy();
+  expect(await robots.text()).toContain('Disallow: /');
+
+  const sitemap = await request.get('/sitemap.xml');
+  expect(sitemap.status()).toBe(404);
 });

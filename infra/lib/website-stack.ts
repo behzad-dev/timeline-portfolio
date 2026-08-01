@@ -30,11 +30,26 @@ export class WebsiteStack extends cdk.Stack {
 
     const origin = origins.S3BucketOrigin.withOriginAccessControl(bucket);
 
+    const noIndexHeaders = new cloudfront.ResponseHeadersPolicy(this, 'NoIndexHeaders', {
+      comment:
+        'Prevent public portfolio content from being indexed or cached by search engines',
+      customHeadersBehavior: {
+        customHeaders: [
+          {
+            header: 'X-Robots-Tag',
+            value: 'noindex, nofollow, noarchive, nosnippet, noimageindex',
+            override: true,
+          },
+        ],
+      },
+    });
+
     const distribution = new cloudfront.Distribution(this, 'Distribution', {
       defaultBehavior: {
         origin,
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
         compress: true,
+        responseHeadersPolicy: noIndexHeaders,
       },
       defaultRootObject: 'index.html',
       domainNames: props.domainNames,
